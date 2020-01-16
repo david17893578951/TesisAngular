@@ -1,0 +1,54 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+<div class="well">
+    <button (click)="getTerapia(this.codigo)" class="btn btn-labeled btn-primary">
+    <span class="btn-label"><i class="fa fa-refresh fa-lg"></i>
+    </span>Actualizar Lista</button>
+</div>
+  <!-- widget grid -->
+  <sa-widgets-grid *ngIf="!show && !showCatalago">
+    <div class="row">
+      <article class="col-sm-12">
+        <div sa-widget [editbutton]="false" color="blueDark">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+            <h2>BENEFICIO ACTIVO</h2>
+          </header>
+          <div *ngIf="!cargarpersonas">
+            <div class="widget-body no-padding">
+
+              <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>OPCIONES</th>
+                      <th>FECHA</th>
+                      <th>PSICOANAMNESIS PERSONAL</th>
+                      <th>PSICOANAMNESIS FAMILIAR</th>
+                      <th>N° SESIONES</th>
+                      <th>ESTADO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let terapia of terapianovigente">
+                      <td class="acciones">
+                       <!-- <a class="fa fa-edit" placement="top" tooltip="Editar Disposicion del Beneficio" (click)="setBeneficioId(beneficio); modal.show()"
+                          data-toggle="modal"></a>-->
+                      </td>
+                      <td>{{terapia.fecha | date:'dd/MM/yyyy'}}</td>
+                      <td>{{terapia.psicoanamnesiPersonal}}</td>
+                      <td>{{terapia.psicoanamnesiFamiliar}}</td>
+                      <td>{{terapia.sesionnum}}</td>
+                      <td *ngIf="terapia.estado==false">INACTIVO</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </sa-widgets-grid>
+</div>

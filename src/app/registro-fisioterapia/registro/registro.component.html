@@ -1,0 +1,219 @@
+<div id="content">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <button (click)="black()" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-reply"></i>
+                      </span>Volver</button>
+
+      <div class="col-sm-12" *ngIf="!id">
+        <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+          <FONT SIZE=5>INGRESO DE NUEVO PACIENTE</FONT>
+        </legend>
+
+      </div>
+
+
+
+      <div class="col-sm-12" *ngIf="id">
+        <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+          <FONT SIZE=5>EDITAR PACIENTE</FONT>
+        </legend>
+
+      </div>
+
+
+    </div>
+    <div class="col-sm-12" *ngIf="!id">
+      <div class="well">
+        <div class="row">
+          <div class="col-md-12">
+            <fieldset>
+              <div class="form-group">
+
+
+                <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Busqueda por Número de Identificación<label class="text-danger">*</label>:</FONT>
+                </label>
+
+
+                <div class="col-lg-4">
+                  <input type="text" minlength="10" maxlength="10" class="form-control" [(ngModel)]="p" name="p" required>
+                </div>
+                <div class="col-lg-3">
+
+                  <button (click)="getPersonaNuevo(p);" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-search fa-lg"></i>
+                      </span>Buscar</button>
+
+
+                </div>
+              </div>
+            </fieldset>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <sa-widgets-grid>
+    <div class="row">
+      <article class="col-sm-12">
+        <div sa-widget [editbutton]="false" color="blueDark">
+
+
+
+
+
+          <div>
+            <div class="widget-body no-padding">
+              <form class="form-horizontal" novalidate="novalidate" (ngSubmit)="addOrUpdate($event)" [saBootstrapValidator]="getValidators()"
+                class="form-horizontal">
+
+                <div class="col-md-6">
+                  <fieldset>
+                    <div class="form-group">
+
+
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Cédula<label class="text-danger">*</label>:</FONT>
+                      </label>
+
+                      <div class="col-lg-8" *ngIf="!id">
+                        <input type="text" minlength="10" maxlength="10" class="form-control" [(ngModel)]="personasri.usuario" name="cedula"
+                          required>
+                      </div>
+                      <div class="col-lg-8" *ngIf="id">
+                        <input type="text" minlength="10" maxlength="10" class="form-control" [(ngModel)]="persona.cedula" name="cedula" required>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Apellido<label class="text-danger">*</label>:</FONT>
+                      </label>
+                      <div class="col-lg-8" *ngIf="!id">
+                        <input type="text" class="form-control" [(ngModel)]="personasri.contrasena" required name="apellido">
+                      </div>
+                      <div class="col-lg-8" *ngIf="id">
+                        <input type="text" class="form-control" [(ngModel)]="persona.apellido" required name="apellido1">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Etnia<label class="text-danger">*</label>:</FONT>
+                      </label>
+
+                      <div class="col-lg-8">
+                        <select class="input-sm" [(ngModel)]="persona.etnia" required name="etnia">
+                        <option>MESTIZO</option>
+                         <option>MONTUBIO</option>
+                         <option>AFROECUATORIANO</option>
+                          <option>INDÍGENA</option>
+                           <option>BLANCO</option>
+                      </select>
+
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+
+
+                <div class="col-md-6">
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Nombre<label class="text-danger">*</label>:</FONT>
+                      </label>
+                      <div class="col-lg-8" *ngIf="!id">
+                        <input type="text" class="form-control" [(ngModel)]="personasri.nombre" required name="nombre">
+                      </div>
+                      <div class="col-lg-8" *ngIf="id">
+                        <input type="text" class="form-control" [(ngModel)]="persona.nombre" required name="nombre1">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Sexo<label class="text-danger">*</label>:</FONT>
+                      </label>
+
+                      <div class="col-lg-8">
+                        <select class="input-sm" [(ngModel)]="persona.sexo" required name="sexo">
+                        <option value="F">MASCULINO</option>
+                        <option value="M">FEMENINO</option>
+                      </select>
+
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Estado Civil<label class="text-danger">*</label>:</FONT>
+                      </label>
+
+                      <div class="col-lg-8">
+                        <select class="input-sm" [(ngModel)]="persona.estadoCivil" required name="estadoCivil">
+                          <option value="S">SOLTERO/A</option>
+                          <option value="C">CASADO/A</option>
+                          <option value="D">DIVORCIADO/A</option>
+                          <option value="V">VIUDO/A</option>
+                          <option value="U">UNIÓN LIBRE</option>
+                      </select>
+
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+
+
+
+                <div class="col-md-6">
+                  <fieldset>
+                    <div class="pull-left">
+                      <div class="col-md-12">
+
+
+                        <button type="submit" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-floppy-o fa-lg"></i>
+                      </span>Guardar</button>
+
+
+                      </div>
+
+                    </div>
+                    <div class="pull-left header-button">
+
+                      <button *ngIf="id" (click)="ir()" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-paper-plane-o fa-lg"></i>
+                      </span>Ir a Diagnóstico Médico</button>
+
+
+
+                    </div>
+                    <div style="clear:both"></div>
+                  </fieldset>
+
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </sa-widgets-grid>
+  <!--<app-dato-persona *ngIf="id" [codigo]='id'></app-dato-persona>-->
+</div>

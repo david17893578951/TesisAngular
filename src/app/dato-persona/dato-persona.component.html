@@ -1,0 +1,110 @@
+<sa-widgets-grid>
+  <div class="row">
+    <article class="col-sm-12 ">
+      <div sa-widget [colorbutton]="false" [editbutton]="false" [custombutton]="false">
+        <header>
+          <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+          <h2> <label  style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Persona:</FONT>
+                                        </label> {{persona.apellido}} {{persona.nombre}}</h2>
+        </header>
+        <div>
+          <div class="widget-body no-padding">
+            <form *ngIf="!show" id="checkout-form" class="smart-form">
+              <fieldset>
+
+                <div class="row">
+                  <label class="col col-4 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Cédula:</FONT>
+                                        </label></B> {{persona.cedula}}</label>
+
+                  <label class="col col-4 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Correo: </FONT>
+                                        </label> </B> {{persona.correo}}</label>
+
+                  <label class="col col-4 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Ocupación: </FONT>
+                                        </label></B> {{persona.ocupacion}}</label>
+                </div>
+
+                <div class="row">
+                  <label class="col col-4 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Apellido: </FONT>
+                                        </label> </B> {{persona.apellido}}</label>
+
+                  <label class="col col-4 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Lugar de Residencia: </FONT>
+                                        </label></B> {{persona.dirRecidencia}}</label>
+
+                  <label class="col col-4 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Etnia: </FONT>
+                                        </label></B> {{persona.etnia}}</label>
+                </div>
+
+                <div class="row">
+                  <label class="col col-4 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Nombre: </FONT>
+                                        </label></B> {{persona.nombre}}</label>
+
+                  <label *ngIf="persona.sexo=='F'" class="col col-4 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Género: </FONT>
+                                        </label></B> FEMENINO</label>
+                  <label *ngIf="persona.sexo=='M'" class="col col-4 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Género: </FONT>
+                                        </label></B> MASCULINO</label>
+                  <label class="col col-4 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Grupo Sanguineo: </FONT>
+                                        </label></B> {{persona.grupoSanguineo}}</label>
+                </div>
+
+
+
+                <div class="row">
+                  <label class="col col-4 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Fecha de Nacimiento: </FONT>
+                                        </label></B> {{persona.fechaNacimiento}}</label>
+
+
+
+
+
+
+                  <label *ngIf="persona.estadoCivil=='S'" class="col col-4 control-label text-left">
+                    <B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Estado Civil:</FONT>
+                                        </label> </B> SOLTERO/A</label>
+
+                    <label *ngIf="persona.estadoCivil=='C'" class="col col-4 control-label text-left">
+                      <B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Estado Civil:</FONT>
+                                        </label> </B> CASADO/A</label>
+
+                      <label *ngIf="persona.estadoCivil=='V'" class="col col-4 control-label text-left">
+                        <B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Estado Civil:</FONT>
+                                        </label> </B> VIUDO/A</label>
+
+                        <label *ngIf="persona.estadoCivil=='D'" class="col col-4 control-label text-left">
+                          <B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Estado Civil:</FONT>
+                                        </label> </B> DIVORCIADO/A</label>
+                                        
+                          <label *ngIf="persona.estadoCivil=='U'" class="col col-4 control-label text-left">
+                            <B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Estado Civil:</FONT>
+                                        </label> </B> UNIÓN LIBRE</label>
+
+                                        
+                            <label class="col col-4 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Teléfono: </FONT>
+                                        </label></B> {{persona.telefono}}</label>
+                </div>
+
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</sa-widgets-grid>

@@ -1,0 +1,98 @@
+<div class="well">
+  <button (click)="modal.show()" class="btn btn-labeled btn-primary">
+    <span class="btn-label"><i class="fa fa-plus-circle fa-lg"></i>
+    </span>Nuevo</button>
+</div>
+
+
+<sa-widgets-grid *ngIf="!show && !showCatalago">
+  <div class="row">
+    <article class="col-sm-12">
+      <div sa-widget>
+        <div>
+          <div class="widget-body no-padding">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>OPCIONES</th>
+                    <th>TIPO</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let tipobeneficio of tipobeneficios">
+                    <td class="acciones">
+                      <a class="btn btn-primary btn-xs" data-toggle="modal" (click)="setTipoBeneficioId(tipobeneficio); modal.show()"><i class="fa fa-edit"></i> Editar Beneficio</a>
+                    </td>
+                    <td>{{viewEstado(tipobeneficio.tipo)}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </article>
+  </div>
+</sa-widgets-grid>
+
+
+<!--jjjjjjjjjjjjjjj-->
+<div class="modal" id="CrudFuente" bsModal #modal="bs-modal" role="dialog" aria-hidden="true" tabindex="-1" data-backdrop=”static”
+  data-keyboard=”false”>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <a class="close" type="reset" (click)="close()">&times;</a>
+        <h3 class="modal-title">
+          <div class="row" align="center">
+            <b>NUEVO TIPO DE BENEFICIOS</b>
+          </div>
+        </h3>
+      </div>
+      <div class="modal-body">
+
+        <form *ngIf="!show" class="form-horizontal" novalidate="novalidate" (ngSubmit)="addOrUpdate($event)" [saBootstrapValidator]="getValidators()">
+
+
+          <fieldset>
+
+            <label class="col-col-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Tiene Beneficio a<label class="text-danger">*</label>:</FONT>
+            </label>
+
+            <select class="col-col-6 input-sm" [(ngModel)]="tipobeneficio.tipo" required name="tipo">
+                        <option *ngFor="let catalogo of tipos" [value]="catalogo.id">{{catalogo.nombre}}</option>
+                      </select>
+
+          </fieldset>
+
+
+
+          <fieldset>
+            <div class="form-actions">
+              <div class="pull-left">
+                <div class="col-md-12">
+                  <div class="modal-footer">
+
+                    <button type="submit" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-floppy-o fa-lg"></i>
+                      </span>Guardar</button>
+
+                    <button (click)="close()" class="btn btn-labeled btn-danger" type="reset">
+                      <span class="btn-label"><i class="glyphicon glyphicon-remove"></i>
+                      </span>Cancelar</button>
+
+                  </div>
+                </div>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

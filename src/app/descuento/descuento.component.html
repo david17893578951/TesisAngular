@@ -1,0 +1,122 @@
+<div id="content">
+
+
+
+  <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+    <FONT SIZE=5>DESCUENTOS MÉDICOS</FONT>
+  </legend>
+  <!-- widget grid -->
+  <sa-widgets-grid>
+    <div class="row">
+      <article class="col-sm-12">
+        <div sa-widget [editbutton]="false" color="blueDark">
+          <header>
+            <span class="widget-icon"><i class="fa fa-table"></i> </span>
+            <h2>LISTA DE PERSONAS CON DESCUENTOS</h2>
+          </header>
+
+
+
+
+
+          <div *ngIf="!cargarpersonas">
+            <div class="widget-body no-padding">
+              <sa-datatable fbg-datatable tableClass="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>OPCIONES</th>
+                    <th>CÉDULA</th>
+                    <th>APELLIDOS</th>
+                    <th>NOMBRE</th>
+                    <th>GÉNERO</th>
+                    <th>NACIONALIDAD</th>
+                    <th>ETNIA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let persona of personas">
+                    <td class="acciones">
+                      <a class="btn btn-primary btn-xs" (click)="getDescuento(persona.id); modal.show()"><i class="fa fa-eye"></i>Ver Descuento</a>
+
+                      <a class="btn btn-primary btn-xs" placement="top" routerLink="../descuento/tipodescuento/{{persona.id}}"><i class="fa fa-edit"></i> Editar</a>
+                    </td>
+                    <td>{{persona.cedula}}</td>
+                    <td>{{persona.apellido}}</td>
+                    <td>{{persona.nombre}}</td>
+                    <td>{{persona.sexo}}</td>
+                    <td>{{persona.nacionalidad}}</td>
+                    <td>{{persona.etnia}}</td>
+                  </tr>
+                </tbody>
+              </sa-datatable>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </sa-widgets-grid>
+
+
+  <div class="modal" id="CrudFuente" bsModal #modal="bs-modal" role="dialog" aria-hidden="true" tabindex="-1" data-backdrop=”static”
+    data-keyboard=”false”>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a class="close" type="reset" (click)="close()">&times;</a>
+          <h3 class="modal-title">
+            <div class="row" align="center">
+              <b>Disposición del Beneficio</b>
+            </div>
+          </h3>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+            <div *ngIf="!show && !showCatalago" class="row">
+              <div class="col-md-12">
+                <div>
+                  <div class="widget-body no-padding">
+                    <div class="table-responsive">
+
+                      <table class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>FECHA ASIGNACIÓN</th>
+                            <th>TIPO DE DESCUENTO</th>
+                            <th>DESCUENTO</th>
+                            <th>OBSERVACIONES</th>
+                            <th>ESTADO</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let descuento of descuentoactivo">
+                            <td>{{descuento.fechaAsignacion}}</td>
+                            <td>{{viewEstado(descuento.tipo)}}</td>
+                            <td>{{descuento.descuento}}</td>
+                            <td>{{descuento.observacion}}</td>
+                            <td>{{viewEstado(descuento.estado)}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <div class="modal-footer">
+                      <button class="btn btn-default" type="reset" (click)="close()">Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

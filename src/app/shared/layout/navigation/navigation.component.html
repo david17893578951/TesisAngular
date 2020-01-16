@@ -1,0 +1,87 @@
+<aside id="left-panel">
+
+    <!-- User info -->
+    <!--<sa-login-info></sa-login-info>-->
+    <!-- end user info -->
+
+    <nav>
+        <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+    Please note that these links work a bit different than
+    traditional href="" links. See documentation for details.
+    -->
+
+
+        <ul saSmartMenu *ngIf="!cargandoMenu">
+            <li routerLinkActive="active">
+                <a routerLink="/home" title="Home">
+                    <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{'Inicio'}}</span></a>
+            </li>
+
+
+
+            <li class="top-menu-invisible">
+                <a href="#"><i class="fa fa-lg fa-fw fa-cube txt-color-blue"></i> <span class="menu-item-parent">{{'Administración Médica' | i18n}}</span></a>
+                <ul>
+                    <li routerLinkActive="active">
+                        <a routerLink="/beneficiomedico"><i class="fa fa-gear"></i>{{'Beneficio Médico' | i18n}}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/descuento"><i class="fa fa-picture-o"></i>{{'Descuento Médico' | i18n}}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="top-menu-invisible">
+                <a routerLink="/registrofisioterapia" title="Registro Fisioterapia">
+                    <i class="fa fa-lg fa-fw fa-file-text-o"></i> <span class="menu-item-parent">{{'Registro Fisioterapia' | i18n}}</span></a>
+            </li>
+
+            <li class="top-menu-invisible">
+                <a href="#"><i class="fa fa-life-ring"></i> <span class="menu-item-parent">{{'Seguimiento Fisioterapia' | i18n}}</span></a>
+                <ul>
+                    <li routerLinkActive="active">
+                        <a routerLink="/seguimientofisioterapia/calendariofisioterapia"><i class="fa fa-compass"></i>{{'Calendario' | i18n}}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/seguimientofisioterapia"><i class="fa fa-gear"></i>{{'Diagnóstico Fisioterapia' | i18n}}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/seguimientofisioterapia/asistenciafisioterapias"><i class="fa fa-compass"></i>{{'Control de Fisioterapias' | i18n}}</a>
+                    </li>
+                     <li routerLinkActive="active">
+                        <a routerLink="/seguimientofisioterapia/reportefisioterapia"><i class="fa fa-compass"></i>{{'Reporte' | i18n}}</a>
+                    </li>
+                    
+                </ul>
+            </li>
+
+
+            <li class="top-menu-invisible">
+                <a href="#"><i class="fa fa-hdd-o"></i> <span class="menu-item-parent">{{'Seguimiento Psicológico' | i18n}}</span></a>
+                <ul>
+                     <li routerLinkActive="active">
+                        <a routerLink="/seguimientopsicologico/calendariopsicologia"><i class="fa fa-compass"></i>{{'Calendario' | i18n}}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/seguimientopsicologico"><i class="fa fa-gear"></i>{{'Diagnóstico Psicológico' | i18n}}</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/seguimientopsicologico/terapiaspsicologico"><i class="fa fa-compass"></i>{{'Terapias Psicológicas' | i18n}}</a>
+                    </li>
+                    
+                    <li routerLinkActive="active">
+                        <a routerLink="/seguimientopsicologico/reportepsicologia"><i class="fa fa-compass"></i>{{'Reporte' | i18n}}</a>
+                    </li>
+                   
+                </ul>
+                
+            </li>
+
+
+        </ul>
+
+    </nav>
+
+    <sa-minify-menu></sa-minify-menu>
+
+</aside>

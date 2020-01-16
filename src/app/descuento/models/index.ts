@@ -1,0 +1,1 @@
+export { Descuento } from './descuento.model';

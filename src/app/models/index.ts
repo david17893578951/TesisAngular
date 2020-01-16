@@ -1,0 +1,13 @@
+export { Catalogo } from './catalogo.model';
+export { Persona } from './persona.model';
+export { Sri } from './sri.model';
+export { Paciente } from './paciente.model';
+export { Registrofisioterapia } from './registrofisioterapia.model';
+export { Diagnosticofisioterapia } from './diagnosticofisioterapia.model';
+export { Beneficio } from './beneficio.model';
+export { TipoBeneficio } from './tipobeneficio.model';
+export { Descuento } from './descuento.model';
+export { Motivo } from './motivo.model';
+export { SeguimientoPsicologico } from './seguimientopsicologico.model';
+export { Sesion } from "./sesion.model";
+export { Calendario } from "./calendario.model";

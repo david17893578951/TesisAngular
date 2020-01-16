@@ -1,0 +1,13 @@
+export { CatalogoService } from './catalogo.service';
+export { PersonaService } from './persona.service';
+export { PacienteService} from './paciente.service';
+export { SriService} from './sri.service';
+export { RegistrofisioterapiaService } from './registrofisioterapia.service';
+export { DiagnosticofisioterapiaService } from './diagnosticofisioterapia.service';
+export { BeneficioService } from './beneficio.service';
+export { TipoBeneficioService } from './tipobeneficio.service';
+export { MotivoService } from './motivo.service';
+export { TerapiaService } from './terapia.service';
+export { SeguimientopsicologicoService } from './seguimientopsicologico.service';
+export { SesionService } from './sesion.service';
+export { CalendarioService } from './calendario.service';

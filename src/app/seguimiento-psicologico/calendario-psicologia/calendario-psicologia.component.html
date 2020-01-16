@@ -1,0 +1,165 @@
+<div id="content">
+
+
+
+  <sa-widgets-grid>
+    <div class="row">
+
+      <article class="col-sm-12 col-md-12 col-lg-3">
+
+        <div sa-widget color="blueDark" [editbutton]="false" [colorbutton]="false" [togglebutton]="false" [fullscreenbutton]="false"
+          [deletebutton]="false">
+
+        </div>
+
+
+      </article>
+
+
+      <article>
+
+        <calendar-widget></calendar-widget>
+      </article>
+    </div>
+  </sa-widgets-grid>
+
+
+
+
+
+  <!-- MAIN CONTENT kkkkkkkkkkkk-->
+  <sa-widgets-grid *ngIf="!show && !showCatalago">
+    <div sa-widget [colorbutton]="false" [editbutton]="false" [custombutton]="false">
+      <header>
+        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+        <h2><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Diagnóstico Fisioterapéutico</FONT>
+                                        </label> </h2>
+      </header>
+      <div>
+
+
+        <div class="well" *ngIf="!show1">
+
+          <button (click)="modal.show()" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-plus-circle fa-lg"></i>
+                      </span>Nuevo</button>
+
+          <sa-datatable fbg-datatable tableClass="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>OPCIONES</th>
+                <th>N° SESIÓN</th>
+                <th>INDICACIÒN</th>
+
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let seguimiento of calendarios">
+                <td class="acciones">
+
+                  <a class="btn btn-primary btn-xs" placement="top" data-toggle="modal" (click)="setSeguimientoId(seguimiento); modal.show()"><i class="fa fa-edit"></i> Editar</a>
+                </td>
+                <td>{{seguimiento.descripcion}}</td>
+                <td>{{seguimiento.fechaInicio | date:'dd/MM/yyyy'}}</td>
+
+              </tr>
+            </tbody>
+          </sa-datatable>
+        </div>
+      </div>
+    </div>
+  </sa-widgets-grid>
+
+
+
+
+
+
+
+
+  <!--HHHHHHHHHHHHHHHHHHHHHHH-->
+
+  <div class="modal" id="CrudFuente" bsModal #modal="bs-modal" role="dialog" aria-hidden="true" tabindex="-1" data-backdrop=”static”
+    data-keyboard=”false”>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a class="close" type="reset" (click)="close()">&times;</a>
+
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" novalidate="novalidate" (ngSubmit)="addOrUpdate($event)" [saBootstrapValidator]="getValidators()">
+
+            <fieldset>
+              <div class="col-md-1">
+
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>FECHA: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-11">
+                <input type="Date" class="form-control" [(ngModel)]="calendario.fechaInicio" name="fechaInicio">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+
+
+            <fieldset>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>DESCRIPCIÒN: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8">
+                <input type="text" class="form-control" [(ngModel)]="calendario.descripcion" name="descripcion">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+
+
+
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-floppy-o fa-lg"></i>
+                      </span>Guardar</button>
+
+                      <button (click)="close()" class="btn btn-labeled btn-danger" type="reset">
+                      <span class="btn-label"><i class="glyphicon glyphicon-remove"></i>
+                      </span>Cancelar</button>
+
+                    </div>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

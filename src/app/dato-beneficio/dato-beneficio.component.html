@@ -1,0 +1,128 @@
+<sa-widgets-grid>
+  <div class="row">
+    <article class="col-sm-12 ">
+      <div sa-widget [colorbutton]="true" [editbutton]="false" [custombutton]="false">
+        <header>
+          <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+          <h2>Beneficios y Descuentos</h2>
+        </header>
+        <div>
+          <div class="widget-body no-padding">
+            <form *ngIf="!show" id="checkout-form" class="smart-form">
+              <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+                <FONT SIZE=5>Beneficios Actuales</FONT>
+              </legend>
+              <fieldset>
+                <div class="row">
+                  <label class="col col-2 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Fecha:</FONT>
+                                        </label></B> {{beneficioactivo1.fechaAsignacion}}</label>
+
+                  <label class="col col-3 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Disposición: </FONT>
+                                        </label> </B> {{beneficioactivo1.disposicion}}</label>
+
+
+
+
+
+
+
+                  <label class="col col-2 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>TIENE BENEFICIO A: </FONT>
+                                        </label> </B>
+
+                  </label>
+
+
+
+
+
+
+                  <label class="col col-3 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3></FONT>
+                                        </label> </B>
+                  <table *ngIf="!showtipo && !show">
+
+                    <tbody>
+                      <tr *ngFor="let tipobeneficio of tipobeneficios">
+                        <td align="center">
+                          <B><label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>-> {{viewEstado(tipobeneficio.tipo)}}</FONT>
+                                        </label></B>
+
+                        </td>
+                    </tbody>
+                  </table>
+                  </label>
+
+
+                  <label *ngIf="beneficioactivo1.estado==true" class="col col-2 control-label text-left"><B><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Estado: </FONT>
+                                        </label></B> ACTIVO</label>
+
+
+
+
+
+                </div>
+
+              </fieldset>
+            </form>
+
+
+
+
+
+
+
+            <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+              <FONT SIZE=5>Descuento</FONT>
+            </legend>
+
+            <div *ngIf="!show && !showCatalago" class="well">
+
+
+              <div class="widget-body no-padding">
+                <div class="table-responsive">
+
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>FECHA ASIGNACIÓN</th>
+                        <th>TIPO DE DESCUENTO</th>
+                        <th>% DESCUENTO</th>
+                        <th>OBSERVACIONES</th>
+                        <th>ESTADO</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let descuento of descuentoactivo">
+                        <td>{{descuento.fechaAsignacion}}</td>
+                        <td>{{viewEstado(descuento.tipo)}}</td>
+                        <td>{{descuento.descuento}}</td>
+                        <td>{{descuento.observacion}}</td>
+                        <td *ngIf="descuento.estado==true">ACTIVO</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</sa-widgets-grid>

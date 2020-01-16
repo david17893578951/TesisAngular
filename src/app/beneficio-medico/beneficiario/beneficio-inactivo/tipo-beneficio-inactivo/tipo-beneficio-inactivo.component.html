@@ -1,0 +1,28 @@
+<sa-widgets-grid *ngIf="!show && !showCatalago">
+  <div class="row">
+    <article class="col-sm-12">
+      <div sa-widget>
+        <div>
+          <div class="widget-body no-padding">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>TIPO</th>
+                  
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let tipobeneficio of tipobeneficios">
+                    <td>{{viewEstado(tipobeneficio.tipo)}}</td>
+                   
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</sa-widgets-grid>

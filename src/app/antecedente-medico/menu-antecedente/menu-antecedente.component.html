@@ -1,0 +1,23 @@
+<sa-widget [togglebutton]="false" [editbutton]="false" [fullscreenbutton]="false" [colorbutton]="false" [deletebutton]="false"
+  saSparklineContainer saEasyPieChartContainer>
+  <header>
+    <ul class="nav nav-tabs in" id="myTab">
+      <li class="active">
+        <a data-toggle="tab" href="#s1"><i class="fa fa-list-alt" ></i> <span
+          class="hidden-mobile hidden-tablet">Beneficio Activo</span></a>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#s2"><i class="fa fa-bookmark" ></i> <span
+          class="hidden-mobile hidden-tablet">Beneficio inactivo</span></a>
+      </li>
+    </ul>
+  </header>
+  <div class="no-padding">
+    <div class="widget-body">
+      <div id="myTabContent" class="tab-content">
+        <app-antecedente-patologico [codigo]='codigo' class="tab-pane fade active in padding-10 no-padding-bottom" id="s1"></app-antecedente-patologico>
+        <app-beneficio-inactivo [codigo]='codigo' class="tab-pane fade" id="s2"></app-beneficio-inactivo>
+      </div>
+    </div>
+  </div>
+</sa-widget>

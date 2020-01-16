@@ -1,0 +1,224 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+
+  <div class="row">
+
+    <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+      <FONT SIZE=5>BENEFICIOS</FONT>
+    </legend>
+  </div>
+
+  <div class="well">
+
+    <button (click)="modal.show()" class="btn btn-labeled btn-primary">
+    <span class="btn-label"><i class="fa fa-plus-circle fa-lg"></i>
+    </span>Nuevo</button>
+
+  </div>
+
+  <!-- widget grid -->
+  <sa-widgets-grid *ngIf="!show && !showCatalago">
+    <div class="row">
+      <article class="col-sm-12">
+        <div sa-widget [editbutton]="false" color="blueDark">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+            <h2>BENEFICIO ACTIVO</h2>
+          </header>
+          <div>
+            <div class="widget-body no-padding">
+
+              <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>OPCIONES</th>
+                      <th>DISPOSICIÓN</th>
+                      <th>FECHA ASIGNACIÓN</th>
+                      <th>ESTADO</th>
+                      <th>BENEFICIOS MÉDICOS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let beneficio of beneficioactivo">
+                      <td class="acciones">
+                        <a class="btn btn-primary btn-xs" data-toggle="modal" (click)="setBeneficioId(beneficio); modal.show()"><i class="fa fa-edit"></i> Editar Disposición</a>
+                      </td>
+                      <td>{{beneficio.disposicion}}</td>
+                      <td>{{beneficio.fechaAsignacion}}</td>
+                      <td *ngIf="beneficio.estado==true">ACTIVO</td>
+                      <td>
+                        <app-tipo-beneficio [codigo]='beneficio.id'></app-tipo-beneficio>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </sa-widgets-grid>
+
+  <!--77777777777777777777777777777777777777777-->
+
+  <div class="modal" id="CrudFuente" bsModal #modal="bs-modal" role="dialog" aria-hidden="true" tabindex="-1" data-backdrop=”static”
+    data-keyboard=”false”>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a class="close" type="reset" (click)="close()">&times;</a>
+          <h3 class="modal-title">
+            <div class="row" align="center">
+              <b *ngIf="!beneficio.id">NUEVA DISPOSICIÓN DE BENEFICIOS</b>
+              <b *ngIf="beneficio.id">EDITAR DISPOSICIÓN DE BENEFICIOS</b>
+            </div>
+          </h3>
+        </div>
+        <div class="modal-body">
+          <form *ngIf="!show" class="form-horizontal" novalidate="novalidate" (ngSubmit)="addOrUpdate($event)" [saBootstrapValidator]="getValidators()"
+            class="form-horizontal">
+            <div class="row">
+              <div class="col-md-8">
+                <fieldset>
+                  <div class="form-group">
+
+                    <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Disposición<label class="text-danger">*</label>:</FONT>
+                    </label>
+                    <div class="col-lg-6">
+                      <input type="text" class="form-control" style="text-transform:uppercase;" [(ngModel)]="beneficio.disposicion" name="disposicion" required>
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset *ngIf="beneficio.id">
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Fecha de Asignación:</FONT>
+                    </label>
+                    <div class="col-lg-6">
+                      <input *ngIf="beneficio.id" type="text" class="form-control" disabled [(ngModel)]="beneficio.fechaAsignacion" name="fechaAsignacion">
+                    </div>
+                  </div>
+                </fieldset>
+
+                <fieldset *ngIf="beneficio.id">
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Estado:</FONT>
+                    </label>
+                    <div class="col-lg-6">
+                      <input *ngIf="beneficio.id" type="text" class="form-control" disabled placeholder="{{beneficio.estado}}" name="estado">
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <div class="modal-footer">
+
+                      <button type="submit" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-floppy-o fa-lg"></i>
+                      </span>Guardar</button>
+
+                      <button (click)="close()" class="btn btn-labeled btn-danger" type="reset">
+                      <span class="btn-label"><i class="glyphicon glyphicon-remove"></i>
+                      </span>Cancelar</button>
+
+                    </div>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--
+  <div class="modal" id="CrudFuente" bsModal #modal="bs-modal" role="dialog" aria-hidden="true" tabindex="-1" data-backdrop=”static”
+    data-keyboard=”false”>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a class="close" type="reset" (click)="close()">&times;</a>
+          <h3 class="modal-title">
+            <div class="row" align="center">
+              <b>NUEVA DISPOSICIÓN DE BENEFICIOS</b>
+            </div>
+          </h3>
+        </div>
+        <div class="modal-body">
+           <form novalidate="novalidate" (ngSubmit)="addOrUpdate($event)" [saBootstrapValidator]="getValidators()" class="form-horizontal">
+            <div class="row">
+              <div class="col-md-8">
+                <fieldset>
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label text-left"><b>disposicion<label class="text-danger">*</label>:</b>
+                    </label>
+                    <div class="col-lg-6">
+                      <input *ngIf="!beneficio.id" type="text" class="form-control" [(ngModel)]="beneficio.disposicion" name="disposicion" required>
+                      <input *ngIf="beneficio.id" type="text" class="form-control" [(ngModel)]="beneficio.disposicion" name="disposicions" required>
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset *ngIf="beneficio.id">
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label text-left"><b>fecha de Asignación:</b>
+                    </label>
+                    <div class="col-lg-6">
+                      <input *ngIf="beneficio.id" type="text" class="form-control" disabled [(ngModel)]="beneficio.fechaAsignacion" name="fechaAsignacion">
+                    </div>
+                  </div>
+                </fieldset>
+
+                <fieldset *ngIf="beneficio.id">
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label text-left"><b>Estado:</b>
+                    </label>
+                    <div class="col-lg-6">
+                      <input *ngIf="beneficio.id" type="text" class="form-control" disabled placeholder="{{viewEstado(beneficio.estado)}}" name="estado">
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" type="submit">Guardar</button>
+                      <button class="btn btn-default" type="reset" (click)="close()">Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>-->
+</div>

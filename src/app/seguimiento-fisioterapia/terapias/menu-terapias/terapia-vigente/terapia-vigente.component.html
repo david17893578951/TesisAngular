@@ -1,0 +1,225 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+  <div *ngIf="!show && !showCatalago !show2">
+    <div class="widget-body no-padding">
+
+
+      <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+        <FONT SIZE=5>Diagnóstico Sugerido por el Médico</FONT>
+      </legend>
+      <form id="checkout-form" class="smart-form">
+        <fieldset>
+          <div class="row">
+
+            <label class="col col-4 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Área afectada:</FONT>
+                                        </label></B> {{terapiavigente.areaSug}}</label>
+
+            <label class="col col-4 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Diagnostico médico:</FONT>
+                                        </label></B> {{terapiavigente.diagnosticoSug}}</label>
+
+            <label class="col col-4 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Fecha</FONT>
+                                        </label></B> {{terapiavigente.fecha}}</label>
+          </div>
+          <div class="row">
+
+            <label class="col col-4 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Número de sesiones:</FONT>
+                                        </label></B> {{terapiavigente.numsesionSug}}</label>
+
+            <label class="col col-4 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Observaciones:</FONT>
+                                        </label></B> {{terapiavigente.observacionSug}}</label>
+
+            <label *ngIf="terapiavigente.estado==true" class="col col-4 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Estado:</FONT>
+                                        </label></B> ACTIVO</label>
+          </div>
+
+        </fieldset>
+
+      </form>
+      <div class="row">
+        <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+          <FONT SIZE=5>Diagnóstico Fisioterapéutico</FONT>
+        </legend>
+      </div>
+
+      <form *ngIf="!show2" class="form-horizontal" novalidate="novalidate" (ngSubmit)="addOrUpdate($event)" [saBootstrapValidator]="getValidators()">
+        <div>
+          <div class="col-md-5">
+            <fieldset>
+              <div class="form-group">
+                <section class="col col-6">
+                  <label class="col col-1 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Motivo de la Consulta<label class="text-danger">*</label>:</FONT>
+                  </label>
+                  </B>
+                  </label>
+                  <select class="form-control" [(ngModel)]="motivo.id" name="id" required>
+                          <option name="trfMotivo" *ngFor="let motivo of motivos" [value]="motivo.id">{{motivo.motivo}}</option>
+                        </select>
+                </section>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-md-1">
+            <fieldset>
+              <div class="form-group">
+                <section class="col col-6">
+                  <label class="col col-1 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>█__<label class="text">█</label></FONT>
+                  </label>
+                  </B>
+                  </label>
+                  <a class="btn btn-primary" (click)="modal.show()" data-toggle="modal"><i class="fa fa-plus-circle fa-lg"></i></a>
+
+                </section>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-md-6">
+            <fieldset>
+              <div class="form-group">
+                <section class="col col-2">
+                  <label class="col col-1 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Área Afectada<label class="text-danger">*</label>:</FONT>
+                  </label>
+                  </B>
+                  </label>
+                  <input type="text" class="form-control" [(ngModel)]="diagnosticovigente.areaAfectada" name="areaAfectada" required>
+                </section>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div>
+          <div class="col-md-6">
+            <fieldset>
+              <div class="form-group">
+                <section class="col col-6">
+                  <label class="col col-1 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Grado Movilidad<label class="text-danger">*</label>:</FONT>
+                  </label>
+                  </B>
+                  </label>
+                  <input type="number" step="any" min="1" class="form-control" [(ngModel)]="diagnosticovigente.escala" name="escala"
+                    required>
+                </section>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-group">
+                <section class="col col-6">
+                  <label class="col col-1 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Antecedente<label class="text-danger">*</label>:</FONT>
+                  </label>
+                  </B>
+                  </label>
+                  <textarea class="form-control" [(ngModel)]="diagnosticovigente.antecedente" name="antecedente"></textarea>
+                </section>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-md-6">
+            <fieldset>
+              <div class="form-group">
+                <section class="col col-6">
+                  <label class="col col-1 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Número de Sesiones<label class="text-danger">*</label>:</FONT>
+                  </label>
+                  </B>
+                  </label>
+                  <input type="number" step="any" min="1" class="form-control" [(ngModel)]="diagnosticovigente.sesionnum" name="sesionnum"
+                    required>
+                </section>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-group">
+                <section class="col col-6">
+                  <label class="col col-1 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Diagnóstico<label class="text-danger">*</label>:</FONT>
+                  </label>
+                  </B>
+                  </label>
+                  <textarea class="form-control" [(ngModel)]="diagnosticovigente.diagnostico" name="diagnostico"></textarea>
+                </section>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="pull-left">
+          <div class="col col-6">
+            <button type="submit" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-floppy-o fa-lg"></i>
+                      </span>Guardar</button>
+          </div>
+        </div>
+        <div style="clear:both"></div>
+
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  <!--HHHHHHHHHHHHHHHHHHHHHHH-->
+
+  <div class="modal" id="CrudFuente" bsModal #modal="bs-modal" role="dialog" aria-hidden="true" tabindex="-1" data-backdrop=”static”
+    data-keyboard=”false”>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a class="close" type="reset" (click)="close()">&times;</a>
+          <h3 class="modal-title">
+            <div class="row" align="center">
+              <b>DIAGNÓSTICO</b>
+            </div>
+          </h3>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" class="form-horizontal">
+            <fieldset>
+              <div class="form-group">
+                <section class="col col-6">
+                  <label class="col-lg-7 control-label text-left"><b>Motivo<label class="text-danger">*</label>:</b>
+                  </label>
+                  <input type="text" class="form-control" [(ngModel)]="motivonuevo" name="motivo" required>
+                </section>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <div class="modal-footer">
+                      <button (click)="Nuevomotivo(motivonuevo)" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-floppy-o fa-lg"></i>
+                      </span>Guardar</button>
+                      <button (click)="closee()" class="btn btn-labeled btn-danger" type="reset">
+                      <span class="btn-label"><i class="glyphicon glyphicon-remove"></i>
+                      </span>Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+

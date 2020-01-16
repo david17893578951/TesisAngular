@@ -1,0 +1,160 @@
+<div id="content">
+  <sa-widgets-grid>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-ms-12 col-md-12 colg-lg-12">
+        <div sa-widget [editbutton]="false" [deletebutton]="false" [fullscreenbutton]="true" color="white">
+
+          <div class="row" class="cold-md 1" align="center">
+            <div align="right" class="widget-body no-padding col-sm-12 col-ms-12 col-md-12 colg-lg-12">
+
+              <div>
+                <br>
+                <div>
+                  <img align="right" src="assets/img/logo/logofdi.png" alt="SmartAdmin" height="70" width="70">
+                  <img align="left" src="assets/img/logo/logofdi.png" alt="SmartAdmin" height="70" width="70">
+                </div>
+                <br>
+                <br>
+                <div>
+                  <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 0, 128)">
+                    <b> <font size="5">FEDERACIÓN DEPORTIVA DE IMBABURA</font></b>
+                  </legend>
+                </div>
+                <div>
+                  <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 128)">
+                    <b> LISTA DE TERAPIAS PSICOLÓGICAS ATENDIDAS</b>
+                  </legend>
+                </div>
+
+
+                <div align="left">
+                  <form>
+
+                    <fieldset>
+                      <div class="col-md-2">
+
+                        <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>FECHA INICIO: </FONT>
+                                        </label></B>
+                        </label>
+                      </div>
+                      <div class="col-md-3">
+                        <input type="Date" class="form-control" [(ngModel)]="fecha1" name="fechainicio">
+                      </div>
+                      <div class="col-md-2">
+
+                        <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>FECHA FIN: </FONT>
+                                        </label></B>
+                        </label>
+                      </div>
+                      <div class="col-md-3">
+                        <input type="Date" class="form-control" [(ngModel)]="fecha2" name="fechafin">
+                      </div>
+                      <div class="col-md-2">
+                        <button (click)="getTerapia(fecha1,fecha2)" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-search"></i>
+                      </span>Buscar</button>
+                      </div>
+                      <hr size="2px" width="80%" noshade="noshade" align="center" />
+                    </fieldset>
+                  </form>
+                </div>
+
+                <div *ngIf="temp_var">
+                  <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 0, 128)">
+                    <b> <font size="3">TOTAL DE PACIENTES ATENDIDOS DESDE EL "{{fecha1}}" HASTA EL "{{fecha2}}": {{terapias.length}}  </font></b>
+                  </legend>
+                </div>
+
+
+
+
+                <div align="left">
+
+                  <div class="row" id="datosImpresion" align="center">
+
+                    <div id="print-section">
+
+                      <div id="content">
+                        <div *ngIf="temp_var">
+                          <sa-datatable [options]="{
+                                        colReorder: true,
+                                                    dom: 'Bfrtip',
+                                                    buttons: [
+                                          'copy', 'excel', 'pdf', 'print'
+                                                    ]
+                                                    }" paginationLength="true" tableClass=" table  table-striped table-bordered table-hover">
+                            <thead class="f">
+                              <title id="titulo" align="center">
+                                FEDERACIÓN DEPORTIVA DE IMBABURA </title>
+
+                              <tr align="center">
+
+                                <td>FECHA</td>
+
+
+                                <td>CÈDULA</td>
+                                <td>APELLIDO</td>
+                                <td>NOMBRE</td>
+                                <td>MOTIVO</td>
+                                <td>CONCLUSION</td>
+                                <td>DISCIPLINA</td>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let terapia of terapias" align="center">
+
+                                <td>
+                                  {{terapia.fecha | date:'dd/MM/yyyy'}}
+                                </td>
+
+
+                                <td>
+                                  {{terapia.psgSeguimientoPsicologico.fdiPersona.cedula}}
+                                </td>
+                                <td>
+                                  {{terapia.psgSeguimientoPsicologico.fdiPersona.apellido}}
+                                </td>
+                                <td>
+                                  {{terapia.psgSeguimientoPsicologico.fdiPersona.nombre}}
+                                </td>
+                                <td>
+                                  {{terapia.psgSeguimientoPsicologico.trfMotivo.motivo}}
+                                </td>
+                                <td>
+                                  {{terapia.conclusion}}
+                                </td>
+                                <td *ngFor="let tera of this.terapia.psgSeguimientoPsicologico.fdiPersona.fdiDeportistas">
+                                  {{tera.fdiCategoriaDisciplina.fdiDisciplina.disciplinaNombre}}
+                                </td>
+
+                              </tr>
+
+                            </tbody>
+
+                          </sa-datatable>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <script type="text/javascript">
+                    $("#hoolaa").click(function () {
+                      $("div#datosImpresion").printArea();
+                    })
+                  </script>
+
+                  <div class="modal-footer">
+                  </div>
+                </div>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </sa-widgets-grid>
+</div>

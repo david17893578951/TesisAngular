@@ -1,0 +1,60 @@
+
+<div id="content">
+
+  <div class="row">
+   
+     <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+    <FONT SIZE=5>DESCUENTOS ANTERIORES</FONT>
+  </legend>
+  </div>
+
+     <div class="well">
+    
+     <button (click)="getDescuento(codigo)" class="btn btn-labeled btn-primary">
+    <span class="btn-label"><i class="fa fa-refresh fa-lg"></i>
+    </span>Actualizar Lista</button>
+  </div>
+
+
+  <sa-widgets-grid *ngIf="!show && !showCatalago">
+    <div class="row">
+      <article class="col-sm-12">
+        <div sa-widget [editbutton]="false" color="blueDark">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+            <h2>BENEFICIO ACTIVO</h2>
+          </header>
+          <div *ngIf="!cargarpersonas">
+            <div class="widget-body no-padding">
+
+              <div class="table-responsive">
+
+                <sa-datatable fbg-datatable tableClass="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>FECHA ASIGNACIÓN</th>
+                       <th>TIPO DE DESCUENTO</th>
+                       <th>DESCUENTO</th>
+                      <th>OBSERVACIONES</th>
+                      <th>ESTADO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let descuento of descuentoinactivo">
+                      <td>{{descuento.fechaAsignacion}}</td>
+                      <td>{{viewEstado(descuento.tipo)}}</td>
+                      <td>{{descuento.descuento}}</td>
+                      <td>{{descuento.observacion}}</td>
+                     
+<td *ngIf="descuento.estado==false">INACTIVO</td>
+                    </tr>
+                  </tbody>
+                </sa-datatable>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </sa-widgets-grid>
+</div>

@@ -1,0 +1,47 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+
+  <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+    <FONT SIZE=5>SEGUIMIENTO PSICOLÓGICO</FONT>
+  </legend>
+  <!-- widget grid -->
+  <sa-widgets-grid>
+    <div class="row">
+      <article class="col-sm-12">
+        <div sa-widget [editbutton]="false" color="blueDark">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+            <h2>LISTA DE PACIENTES</h2>
+          </header>
+          <div *ngIf="!cargarpersonas">
+            <div class="widget-body no-padding">
+              <sa-datatable fbg-datatable tableClass="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>OPCIONES</th>
+                    <th>CÉDULA</th>
+                    <th>APELLIDOS</th>
+                    <th>NOMBRE</th>
+                    <th>TELÉFONO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let persona of personas">
+                    <td class="acciones">
+                      <a class="btn btn-primary btn-xs" placement="top" routerLink="../controlpsicologico/{{persona.id}}"><i class="fa fa-edit"></i> Editar</a>
+
+                    </td>
+                    <td>{{persona.cedula}}</td>
+                    <td>{{persona.apellido}}</td>
+                    <td>{{persona.nombre}}</td>
+                    <td>{{persona.telefono}}</td>
+                  </tr>
+                </tbody>
+              </sa-datatable>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </sa-widgets-grid>
+</div>

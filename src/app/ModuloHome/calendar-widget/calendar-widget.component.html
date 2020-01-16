@@ -1,0 +1,57 @@
+<div sa-widget color="blueDark">
+  <header>
+    <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>
+
+    <h2> CALENDARIO GENERAL DE EMPLEADOS </h2>
+
+    <div class="widget-toolbar">
+
+      <div class="btn-group" dropdown>
+        <button id="single-button" type="button" class="btn btn-xs btn-default" dropdownToggle>
+          {{period}} <span class="caret"></span>
+        </button>
+        <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="single-button">
+          <li role="menuitem"><a class="dropdown-item" (click)="changeView('month')">Month</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="changeView('agendaWeek')">Agenda</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="changeView('agendaDay')">Today</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <div>
+    <div class="widget-body no-padding">
+
+      <div class="widget-body-toolbar">
+
+        <div id="calendar-buttons">
+
+          <div class="btn-group">
+            <a (click)="prev()" class="btn btn-default btn-xs"><i
+              class="fa fa-chevron-left"></i></a>
+            <a (click)="next()" class="btn btn-default btn-xs"><i
+              class="fa fa-chevron-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div id="calendar"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="pull-left header-button">
+      <button (click)="argar()" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-reply"></i>
+                      </span>Volver</button>
+    </div>
+  </div>
+</div>

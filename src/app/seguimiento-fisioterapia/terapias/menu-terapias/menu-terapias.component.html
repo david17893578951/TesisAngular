@@ -1,0 +1,23 @@
+<sa-widget [togglebutton]="false" [editbutton]="false" [fullscreenbutton]="false" [colorbutton]="false" [deletebutton]="false"
+  saSparklineContainer saEasyPieChartContainer>
+  <header>
+    <ul class="nav nav-tabs in" id="myTab">
+      <li class="active">
+        <a data-toggle="tab" href="#s1"><i class="fa fa-list-alt" ></i> <span
+          class="hidden-mobile hidden-tablet">Terapia Vigente</span></a>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#s2"><i class="fa fa-bookmark" ></i> <span
+          class="hidden-mobile hidden-tablet">Terapia No Vigente</span></a>
+      </li>
+    </ul>
+  </header>
+  <div class="no-padding">
+    <div class="widget-body">
+      <div id="myTabContent" class="tab-content">
+        <app-terapia-vigente [codigo]='codigo' class="tab-pane fade active in padding-10 no-padding-bottom" id="s1"></app-terapia-vigente>
+        <app-terapia-novigente [codigo]='codigo' class="tab-pane fade" id="s2"></app-terapia-novigente>
+      </div>
+    </div>
+  </div>
+</sa-widget>

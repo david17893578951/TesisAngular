@@ -1,0 +1,56 @@
+<div id="content">
+    <div class="row">
+        <h1 align="center">
+            <B>DESCUENTOS MÉDICOS</B>
+        </h1>
+    </div>
+    <div class="well">
+        <div class="row">
+            <div class="pull-left header-button">
+                <a class="btn btn-primary" routerLink="../antecedentemedico/nuevo">Nuevo</a>
+            </div>
+        </div>
+    </div>
+    <!-- widget grid -->
+    <sa-widgets-grid>
+        <div class="row">
+            <article class="col-sm-12">
+                <div sa-widget [editbutton]="false" color="blueDark">
+                    <header>
+                        <span class="widget-icon"><i class="fa fa-table"></i> </span>
+                        <h2>LISTA DE PERSONAS CON DESCUENTOS</h2>
+                    </header>
+                    <div *ngIf="!show">
+                        <div class="widget-body no-padding">
+                            <sa-datatable fbg-datatable tableClass="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>OPCIONES</th>
+                                        <th>CÉDULA</th>
+                                        <th>APELLIDOS</th>
+                                        <th>NOMBRE</th>
+                                        <th>TELEFONO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let paciente of pacientes">
+                                        <td class="acciones">
+                                            <a class="fa fa-plus-square" placement="top" tooltip="Beneficio activo" (click)="getpaciente(paciente.id); modal.show()"></a>
+                                            <a class="fa fa-edit" placement="top" tooltip="Gestionar Beneficios" routerLink="../antecedentemedico/nuevo/{{paciente.id}}"></a>
+                                        </td>
+
+                                        <td>{{paciente.fdiPersona.cedula}}</td>
+                                        <td>{{paciente.fdiPersona.apellido}}</td>
+                                        <td>{{paciente.fdiPersona.nombre}}</td>
+                                        <td>{{paciente.fdiPersona.telefono}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </sa-datatable>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </sa-widgets-grid>
+</div>

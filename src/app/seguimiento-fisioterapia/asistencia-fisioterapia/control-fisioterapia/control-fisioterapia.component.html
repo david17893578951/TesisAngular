@@ -1,0 +1,535 @@
+<div id="content">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="pull-left header-button">
+        <button (click)="black()" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-reply"></i>
+                      </span>Volver</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+    <FONT SIZE=5>DIAGNÓSTICO FISIOTERAPEUTA </FONT>
+  </legend>
+  <app-dato-persona [codigo]='id'></app-dato-persona>
+
+  <app-dato-beneficio [codigo]='id'></app-dato-beneficio>
+
+  <!-- MAIN CONTENT kkkkkkkkkkkk-->
+  <sa-widgets-grid *ngIf="!show && !showCatalago">
+    <div sa-widget [colorbutton]="false" [editbutton]="false" [custombutton]="false">
+      <header>
+        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+        <h2><label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Diagnóstico Fisioterapéutico</FONT>
+                                        </label> </h2>
+      </header>
+      <div>
+
+        <form id="checkout-form" class="smart-form">
+          <legend SIZE=100 align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+            <FONT SIZE=5>Diagnóstico Sugerido por el Médico</FONT>
+          </legend>
+
+          <fieldset>
+            <div class="row">
+              <label class="col col-6 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Fecha: </FONT>
+                                        </label></B> {{terapiavigente.fecha}}</label>
+
+              <label class="col col-6 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Diagnóstico médico:</FONT>
+                                        </label></B> {{terapiavigente.diagnosticoSug}}</label>
+            </div>
+
+            <div class="row">
+              <label class="col col-6 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Área afectada:</FONT>
+                                        </label></B> {{terapiavigente.areaSug}}</label>
+              <label class="col col-6 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Número de sesiones:</FONT>
+                                        </label></B> {{terapiavigente.numsesionSug}}</label>
+            </div>
+            <div class="row">
+              <label class="col col-6 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Observaciones:</FONT>
+                                        </label></B> {{terapiavigente.observacionSug}}</label>
+
+              <label *ngIf="terapiavigente.estado==true" class="col col-6 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Estado:</FONT>
+                                        </label></B> ACTIVO</label>
+            </div>
+          </fieldset>
+        </form>
+
+
+
+
+
+
+        <form id="checkout-form" class="smart-form">
+          <legend SIZE=100 align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+            <FONT SIZE=5>Diagnóstico Fisioterapéutico</FONT>
+          </legend>
+
+          <fieldset>
+            <div class="row">
+              <label class="col col-6 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Motivo de la Consulta: </FONT>
+                                        </label></B> {{motivo}}</label>
+
+              <label class="col col-6 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Área afectada: </FONT>
+                                        </label></B> {{diagnosticovigente.areaAfectada}}</label>
+            </div>
+
+            <div class="row">
+              <label class="col col-6 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Grado Movilidad: </FONT>
+                                        </label></B> {{diagnosticovigente.escala}}</label>
+
+              <label class="col col-6 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Número de sesiones: </FONT>
+                                        </label></B> {{diagnosticovigente.sesionnum}}</label>
+            </div>
+            <div class="row">
+              <label class="col col-6 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Antecedentes: </FONT>
+                                        </label></B> {{diagnosticovigente.antecedente}}</label>
+
+              <label class="col col-6 control-label text-left"><B> <label for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Diagnóstico: </FONT>
+                                        </label></B> {{diagnosticovigente.diagnostico}}</label>
+            </div>
+          </fieldset>
+        </form>
+
+        <div class="well" *ngIf="!show1">
+
+          <legend SIZE=100 align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+            <FONT SIZE=5>Asistencias</FONT>
+          </legend>
+
+          <div class="well" align="center">
+
+            <circle-progress [percent]="porcentaje" [radius]="100" [outerStrokeWidth]="16" [innerStrokeWidth]="8" [outerStrokeColor]="'#78C000'"
+              [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="300"></circle-progress>
+
+
+          </div>
+
+
+
+          <button *ngIf="terapiavigente.id && diagnosticovigente.id" (click)="modal.show()" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-plus-circle fa-lg"></i>
+                      </span>Nuevo</button>
+
+          <sa-datatable fbg-datatable tableClass="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>OPCIONES</th>
+                <th>N° SESIÓN</th>
+                <th>FECHA</th>
+                <th>INDICACIÒN</th>
+
+                <th>PORCENTAJE DE ASISTENCIA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let seguimiento of asistencias">
+                <td class="acciones">
+
+                  <a class="btn btn-primary btn-xs" placement="top" data-toggle="modal" (click)="setSeguimientoId(seguimiento); modal.show()"><i class="fa fa-edit"></i> Editar</a>
+                </td>
+                <td>{{seguimiento.numsesionactual}}</td>
+                <td>{{seguimiento.fecha | date:'dd/MM/yyyy'}}</td>
+                <td>{{seguimiento.indicacion}}</td>
+
+                <td>
+                  <circle-progress [percent]="seguimiento.porcentajeasistido" [radius]="40" [outerStrokeWidth]="16" [innerStrokeWidth]="8"
+                    [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="300"></circle-progress>
+                </td>
+              </tr>
+            </tbody>
+          </sa-datatable>
+        </div>
+      </div>
+    </div>
+  </sa-widgets-grid>
+
+
+
+
+
+
+
+
+  <!--HHHHHHHHHHHHHHHHHHHHHHH-->
+
+  <div class="modal" id="CrudFuente" bsModal #modal="bs-modal" role="dialog" aria-hidden="true" tabindex="-1" data-backdrop=”static”
+    data-keyboard=”false”>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a class="close" type="reset" (click)="close()">&times;</a>
+
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" novalidate="novalidate" (ngSubmit)="addOrUpdate($event)" [saBootstrapValidator]="getValidators()">
+
+            <fieldset *ngIf="asistencia.id">
+              <div class="col-md-1">
+
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>FECHA: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-11">
+
+                <input disabled type="text" class="form-control"  [value]="asistencia.fecha | date: 'dd/MM/yyyy'" name="fecha">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+
+
+            <legend SIZE=100 align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+              <FONT SIZE=5>Orden Fisioterapia</FONT>
+            </legend>
+
+
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.cqcb" value="None" id="slideThree" name="cqcb" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>C.Q.C.: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.cqcb">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.cqc" name="cqc">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.crioterapiab" value="None" id="slideThree" name="crioterapiab" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>CRIOTERAPIA: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.crioterapiab">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.crioterapia" name="crioterapia">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.parafinab" value="None" id="slideThree" name="parafinab" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>PARAFINA: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.parafinab">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.parafina" name="parafina">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.electroterapiab" value="None" id="slideThree" name="electroterapiab" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>ELECTROTERAPIA: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.electroterapiab">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.electroterapia" name="electroterapia">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.ub" value="None" id="slideThree" name="ub" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>U.S.: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.ub">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.u" name="u">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.magnetob" value="None" id="slideThree" name="magnetob" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>MAGNETO: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.magnetob">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.magneto" name="magneto">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.laserb" value="None" id="slideThree" name="laserb" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>LÁSER: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.laserb">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.laser" name="laser">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.isometricob" value="None" id="slideThree" name="isometricob" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>EJ. ISOMETRICOS: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.isometricob">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.isometrico" name="isometrico">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.isotonicob" value="None" id="slideThree" name="isotonicob" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>EJ. ISOTÓNICO: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.isotonicob">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.isotonico" name="isotonico">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.propiocepcionb" value="None" id="slideThree" name="propiocepcionb" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>EJ. PROPIOCEPCIÓN: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.propiocepcionb">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.propiocepcion" name="propiocepcion">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+
+
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.terapeuticob" value="None" id="slideThree" name="terapeuticob" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>EJ. TERAPEUTICOS: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.terapeuticob">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.terapeutico" name="terapeutico">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.estiramientob" value="None" id="slideThree" name="estiramientob" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>ESTIRAMIENTOS: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.estiramientob">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.estiramiento" name="estiramiento">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+            <fieldset>
+              <div class="col-md-1">
+                <section title=".slideThree">
+                  <div class="slideThree">
+                    <input type="checkbox" [(ngModel)]="asistencia.otrob" value="None" id="slideThree" name="otrob" />
+                    <label for="slideThree"></label>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>OTROS: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-8" *ngIf="asistencia.otrob">
+                <input type="text" class="form-control" [(ngModel)]="asistencia.otro" name="otro">
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+
+
+            <legend SIZE=100 align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+              <FONT SIZE=5>Indicaciones</FONT>
+            </legend>
+
+            <fieldset>
+              <div class="col-md-2">
+                <label class="control-label text-left"><B> <label style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>INDICACIÓN: </FONT>
+                                        </label></B>
+                </label>
+              </div>
+              <div class="col-md-10">
+                <textarea class="form-control" [(ngModel)]="asistencia.indicacion" name="indicacion"></textarea>
+              </div>
+              <hr size="2px" width="80%" noshade="noshade" align="center" />
+            </fieldset>
+
+
+
+
+
+
+
+
+
+
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-floppy-o fa-lg"></i>
+                      </span>Guardar</button>
+
+                      <button (click)="close()" class="btn btn-labeled btn-danger" type="reset">
+                      <span class="btn-label"><i class="glyphicon glyphicon-remove"></i>
+                      </span>Cancelar</button>
+
+                    </div>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

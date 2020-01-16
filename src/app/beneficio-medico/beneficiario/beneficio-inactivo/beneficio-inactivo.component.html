@@ -1,0 +1,60 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+
+  <div class="row">
+       <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+      <FONT SIZE=5>BENEFICIOS ANTERIORES</FONT>
+    </legend>
+  </div>
+  <div class="well">
+    <button (click)="getBeneficio(codigo)" class="btn btn-labeled btn-primary">
+    <span class="btn-label"><i class="fa fa-refresh fa-lg"></i>
+    </span>Actualizar Lista</button>
+  </div>
+  <!-- widget grid -->
+  <sa-widgets-grid *ngIf="!show && !showCatalago">
+    <div class="row">
+      <article class="col-sm-12">
+        <div sa-widget [editbutton]="false" color="blueDark">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+            <h2>BENEFICIOS INACTIVOS</h2>
+          </header>
+          <div *ngIf="!cargarpersonas">
+            <div class="widget-body no-padding">
+
+              <div class="table-responsive">
+
+                <sa-datatable fbg-datatable tableClass="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+
+                      <th>DISPOSICIÓN</th>
+                      <th>FECHA ASIGNACIÓN</th>
+                      <th>ESTADO</th>
+                      <th>BENEFICIOS MÉDICOS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let beneficio of beneficioinactivo">
+
+                      <td>{{beneficio.disposicion}}</td>
+                      <td>{{beneficio.fechaAsignacion}}</td>
+                       <td *ngIf="beneficio.estado==false">INACTIVO</td>
+                      <td>
+                        <app-tipo-beneficio-inactivo [codigo]='beneficio.id'></app-tipo-beneficio-inactivo>
+                      </td>
+                    </tr>
+                  </tbody>
+                </sa-datatable>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+
+    </div>
+  </sa-widgets-grid>
+</div>

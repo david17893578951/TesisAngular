@@ -1,0 +1,217 @@
+<div id="content">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="pull-left header-button">
+        <button (click)="black()" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-reply"></i>
+                      </span>Volver</button>
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+      <FONT SIZE=5>DIAGNÓSTICO MÉDICO SUGERIDO</FONT>
+    </legend>
+  </div>
+  <app-dato-persona [codigo]='id'></app-dato-persona>
+ 
+  <app-dato-beneficio [codigo]='id'></app-dato-beneficio>
+
+
+
+
+  <!-- MAIN CONTENT -->
+  <div id="content">
+
+
+
+
+    <!-- widget grid -->
+    <sa-widgets-grid *ngIf="!show && !showCatalago">
+      <div class="row">
+        <article class="col-sm-12">
+
+          <div sa-widget [editbutton]="false" color="blueDark">
+            <header>
+              <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+              <h2>Diagnósticos Sugeridos</h2>
+
+            </header>
+
+            <div *ngIf="!cargarpersonas">
+              <div class="widget-body no-padding">
+                <div class="well">
+                  <button (click)="modal.show()" class="btn btn-labeled btn-primary">
+    <span class="btn-label"><i class="fa fa-plus-circle fa-lg"></i>
+    </span>Nuevo</button>
+                </div>
+                <sa-datatable fbg-datatable tableClass="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>OPCIONES</th>
+                      <th>FECHA</th>
+                      <th>DIAGNÓSTICO SUGERIDO</th>
+                      <th>ÁREA AFECTADA</th>
+                      <th>N° SESIONES SUGERIDAS</th>
+                      <th>OBSERVACIONES</th>
+                      <th>ESTADO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let seguimiento of seguimientos">
+                      <td class="acciones">
+                        <a *ngIf="seguimiento.estado==true" class="btn btn-primary btn-xs" data-toggle="modal" (click)="setSeguimientoId(seguimiento); modal.show()"><i class="fa fa-edit"></i> Editar</a>
+                      </td>
+
+                      <td>{{seguimiento.fecha | date:'dd/MM/yyyy'}}</td>
+                      <td>{{seguimiento.diagnosticoSug}}</td>
+                      <td>{{seguimiento.areaSug}}</td>
+                      <td>{{seguimiento.numsesionSug}}</td>
+                      <td>{{seguimiento.observacionSug}}</td>
+                      <td *ngIf="seguimiento.estado==false">INACTIVO</td>
+                      <td *ngIf="seguimiento.estado==true">ACTIVO</td>
+                    </tr>
+                  </tbody>
+                </sa-datatable>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </sa-widgets-grid>
+
+
+
+    <!--HHHHHHHHHHHHHHHHHHHHHHH-->
+    <div class="modal" id="CrudFuente" bsModal #modal="bs-modal" role="dialog" aria-hidden="true" tabindex="-1" data-backdrop=”static”
+      data-keyboard=”false”>
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <a class="close" type="reset" (click)="close()">&times;</a>
+            <h3 class="modal-title">
+              <div class="row" align="center">
+                <b>DIAGNÓSTICO SUGERIDO</b>
+              </div>
+            </h3>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" novalidate="novalidate" (ngSubmit)="addOrUpdate($event)" [saBootstrapValidator]="getValidators()"
+              class="form-horizontal">
+              <div class="row">
+                <div class="col-md-6">
+                  <fieldset>
+                    <div class="form-group">
+
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Diagnóstico<label class="text-danger">*</label>:</FONT>
+                      </label>
+
+
+
+                      <div class="col-lg-8">
+                        <input type="text" class="form-control" [(ngModel)]="seguimiento.diagnosticoSug" required name="diagnosticoSug">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Área Afectada<label class="text-danger">*</label>:</FONT>
+                      </label>
+
+
+                      <div class="col-lg-8">
+                        <input type="text" class="form-control" [(ngModel)]="seguimiento.areaSug" required name="areaSug">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+
+                    <div class="form-group">
+
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>N° de Sesiones<label class="text-danger">*</label>:</FONT>
+                      </label>
+
+                      <div class="col-lg-8">
+                        <input type="number" step="any" min="1" class="form-control" [(ngModel)]="seguimiento.numsesionSug" required name="numsesionSug">
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="col-md-6">
+
+                  <fieldset *ngIf="seguimiento.id">
+                    <div class="form-group">
+
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Fecha<label class="text-danger">*</label>:</FONT>
+                      </label>
+
+                      <div class="col-lg-8">
+                        <input type="text" disabled class="form-control" [value]="seguimiento.fecha | date: 'dd/MM/yyyy'" required name="fecha">
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset>
+                    <div class="form-group">
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Observaciones<label class="text">*</label>:</FONT>
+                      </label>
+
+                      <div class="col-lg-8">
+                        <input type="text" class="form-control" [(ngModel)]="seguimiento.observacionSug" name="observacionSug">
+
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset *ngIf="seguimiento.id">
+                    <div class="form-group">
+
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Estado<label class="text-danger">*</label>:</FONT>
+                      </label>
+
+                      <div class="col-lg-8">
+                        <input *ngIf="seguimiento.estado==true" type="text" disabled class="form-control" placeholder="ACTIVO" required name="estado">
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+              <fieldset>
+                <div class="form-actions">
+                  <div class="pull-left">
+                    <div class="col-md-12">
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-floppy-o fa-lg"></i>
+                      </span>Guardar</button>
+
+                        <button (click)="close()" class="btn btn-labeled btn-danger" type="reset">
+                      <span class="btn-label"><i class="glyphicon glyphicon-remove"></i>
+                      </span>Cancelar</button>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div style="clear:both"></div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

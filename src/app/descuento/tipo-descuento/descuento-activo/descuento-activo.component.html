@@ -1,0 +1,142 @@
+<div id="content">
+
+
+
+  <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+    <FONT SIZE=5>DESCUENTOS</FONT>
+  </legend>
+
+
+
+
+  <div class="well">
+
+    <button (click)="modal.show()" class="btn btn-labeled btn-primary">
+    <span class="btn-label"><i class="fa fa-plus-circle fa-lg"></i>
+    </span>Nuevo</button>
+
+  </div>
+
+
+  <sa-widgets-grid *ngIf="!show && !showCatalago">
+    <div class="row">
+      <article class="col-sm-12">
+        <div sa-widget [editbutton]="false" color="blueDark">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+            <h2>DESCUENTO ACTIVO</h2>
+          </header>
+          <div *ngIf="!show">
+            <div class="widget-body no-padding">
+
+              <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>OPCIONES</th>
+
+                      <th>FECHA ASIGNACIÓN</th>
+                      <th>TIPO DE DESCUENTO</th>
+                      <th>DESCUENTO</th>
+                      <th>OBSERVACIONES</th>
+                      <th>ESTADO</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let descuento of descuentoactivo">
+                      <td class="acciones">
+                        <a class="btn btn-primary btn-xs" placement="top" (click)="setDescuentoId(descuento); modal.show()" data-toggle="modal">Editar</a>
+                      </td>
+                      <td>{{descuento.fechaAsignacion}}</td>
+                      <td>{{viewEstado(descuento.tipo)}}</td>
+                      <td>{{descuento.descuento}}</td>
+                      <td>{{descuento.observacion}}</td>
+                      <td *ngIf="descuento.estado==true">ACTIVO</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </sa-widgets-grid>
+
+  <div class="modal" id="CrudFuente" bsModal #modal="bs-modal" role="dialog" aria-hidden="true" tabindex="-1" data-backdrop=”static”
+    data-keyboard=”false”>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a class="close" type="reset" (click)="close()">&times;</a>
+          <h3 class="modal-title">
+            <div class="row" align="center">
+              <b *ngIf="!descuento.id">NUEVA DISPOSICIÓN DE DESCUENTO</b>
+              <b *ngIf="descuento.id">EDITAR DISPOSICIÓN DE DESCUENTO</b>
+            </div>
+          </h3>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" novalidate="novalidate" (ngSubmit)="addOrUpdate($event)" [saBootstrapValidator]="getValidators()">
+            <fieldset>
+
+              <div class="row">
+                <label class="col-lg-3 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Tipo de Paciente<label class="text-danger">*</label>:</FONT>
+                </label>
+                <div class="col-lg-3">
+                  <select class="input-sm" [(ngModel)]="descuento.tipo" name="tipo">
+                        <option *ngFor="let catalogo of tipopaciente" [value]="catalogo.id">{{catalogo.nombre}}</option>
+                      </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-lg-3 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Porcentaje de Descuento<label class="text-danger">*</label>:</FONT>
+                    </label>
+                <div class="col-lg-3">
+                      <input type="number" step="any" min="1" max="100" class="form-control" [(ngModel)]="descuento.descuento" name="descuento"
+                        required>
+                    </div>
+              </div>
+
+              <div class="row">
+                 <label class="col-lg-3 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Observaciones:</FONT>
+                    </label>
+                <div class="col-lg-3">
+                      <textarea class="form-control" [(ngModel)]="descuento.observacion" name="observacion"></textarea>
+                    </div>
+              </div>
+
+            </fieldset>
+
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <div class="modal-footer">
+
+                      <button type="submit" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-floppy-o fa-lg"></i>
+                      </span>Guardar</button>
+
+                      <button (click)="close()" class="btn btn-labeled btn-danger" type="reset">
+                      <span class="btn-label"><i class="glyphicon glyphicon-remove"></i>
+                      </span>Cancelar</button>
+
+                    </div>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

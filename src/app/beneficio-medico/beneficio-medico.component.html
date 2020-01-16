@@ -1,0 +1,238 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+
+
+
+
+  <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+    <FONT SIZE=5>BENEFICIOS MÉDICOS</FONT>
+  </legend>
+
+  <!-- widget grid -->
+  <sa-widgets-grid>
+    <div class="row">
+      <article class="col-sm-12">
+        <div sa-widget [editbutton]="false" color="blueDark">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+            <h2>LISTA DE BENEFICIADOS</h2>
+          </header>
+          <div *ngIf="!cargarpersonas">
+            <div class="widget-body no-padding">
+              <sa-datatable fbg-datatable tableClass="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>OPCIONES</th>
+                    <th>CÉDULA</th>
+                    <th>APELLIDOS</th>
+                    <th>NOMBRE</th>
+                    <th>GÉNERO</th>
+                    <th>NACIONALIDAD</th>
+                    <th>ETNIA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let persona of personas">
+                    <td class="acciones">
+                      <a class="btn btn-primary btn-xs" (click)="getBeneficio(persona.id); modal.show()"><i class="fa fa-eye"></i> Ver Beneficio activo</a>
+                      <a class="btn btn-primary btn-xs" routerLink="../beneficiomedico/beneficiario/{{persona.id}}"><i class="fa fa-edit"></i> Editar</a>
+                    </td>
+                    <td>{{persona.cedula}}</td>
+                    <td>{{persona.apellido}}</td>
+                    <td>{{persona.nombre}}</td>
+                    <td>{{persona.sexo}}</td>
+                    <td>{{persona.nacionalidad}}</td>
+                    <td>{{persona.etnia}}</td>
+                  </tr>
+                </tbody>
+              </sa-datatable>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </sa-widgets-grid>
+  <!--ffffffffffffffffffffffffffffffff-->
+  <div class="modal" id="CrudFuente" bsModal #modal="bs-modal" role="dialog" aria-hidden="true" tabindex="-1" data-backdrop=”static”
+    data-keyboard=”false”>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a class="close" type="reset" (click)="close()">&times;</a>
+          <h3 class="modal-title">
+            <div class="row" align="center">
+              <b>BENEFICIOS ACTIVOS</b>
+            </div>
+          </h3>
+        </div>
+        <div *ngIf="!show" class="modal-body">
+          <form class="form-horizontal">
+            <div class="well" align="center">
+              <b>Ultima Disposición</b>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div>
+                  <div class="widget-body no-padding">
+                    <div class="table-responsive">
+                      <table class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>VER</th>
+                            <th>DISPOSICIÓN</th>
+                            <th>FECHA ASIGNACIÓN</th>
+                            <th>ESTADO</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let beneficio of beneficioactivo">
+                            <td>
+
+                              <a class="btn btn-info btn-xs" placement="top" (click)="getTipoBeneficio(beneficio.id); modal.show()"><i class="fa fa-eye"></i> Ver Beneficio activo</a>
+
+
+                            </td>
+                            <td (on-change)="getTipoBeneficio(beneficio.id)">{{beneficio.disposicion}}</td>
+                            <td>{{beneficio.fechaAsignacion}}</td>
+                            <td>{{viewEstado(beneficio.estado)}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="well" align="center">
+              <b>Beneficios</b>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="widget-body no-padding">
+                  <div class="table-responsive">
+                    <table *ngIf="!showtipo && !show" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>TIPO</th>
+                          <th>ESTADO</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let tipobeneficio of tipobeneficios">
+                          <td>{{viewEstado(tipobeneficio.tipo)}}</td>
+                          <td><input disabled type="checkbox" [(ngModel)]="tipobeneficio.estado" value="None" id="slideThree"
+                              name="estado" /></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <div class="modal-footer">
+                      <button (click)="close()" class="btn btn-labeled btn-danger" type="reset">
+                      <span class="btn-label"><i class="glyphicon glyphicon-remove"></i>
+                      </span>Cancelar</button>
+
+                    </div>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</div>
+
+
+<!--
+            <div sa-widget [editbutton]="false" color="blueDark">
+              <header>
+                <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                <h2>Export to PDF / Excel</h2>
+              </header>
+              <div>
+                <div class="widget-body no-padding">
+    
+                  <sa-datatable *ngIf="dataAvailable" [options]="{
+                  data: personas,
+                columns: [
+               
+                  {data: 'cedula'},
+                  {data: 'apellido'},
+                  {data: 'nombre'},
+                  {data: 'telefono'}
+                ],
+                buttons: [
+                'copy', 'excel', 'pdf', 'print'
+                ]
+                }" tableClass="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr>
+
+                        <th data-hide="mobile-p">CEDULA</th>
+                        <th data-hide="mobile-p">APELLIDOS</th>
+                        <th data-hide="mobile-p">NOMBRES</th>
+                        <th data-hide="mobile-p">TELEFONO</th>
+                      </tr>
+                    </thead>
+                  </sa-datatable>
+                </div>
+              </div>
+            </div>
+ -->
+<!--
+            <div sa-widget [editbutton]="false" color="blueDark">
+              <header>
+                 <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+
+                <h2>LISTA DE BENEFICIADOS</h2>
+              </header>
+              <div>
+                <div class="widget-body no-padding">
+
+                  <div class="table-responsive">
+
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>OPCIONES</th>
+                          <th>CÉDULA</th>
+                          <th>APELLIDOS</th>
+                          <th>NOMBRE</th>
+                          <th>TELEFONO</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let persona of personas">
+                          <td class="acciones">
+                            <a class="fa fa-plus-square" placement="top" tooltip="Beneficio activo"></a>
+                            <a class="fa fa-edit" placement="top" tooltip="Gestionar Beneficios" routerLink="../beneficiomedico/beneficiario/{{persona.id}}"></a>
+                          </td>
+                          <td>{{persona.cedula}}</td>
+                          <td>{{persona.apellido}}</td>
+                          <td>{{persona.nombre}}</td>
+                          <td>{{persona.telefono}}</td>
+
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>-->

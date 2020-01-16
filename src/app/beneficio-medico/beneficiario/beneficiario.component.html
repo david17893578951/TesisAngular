@@ -1,0 +1,19 @@
+<div id="content">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="pull-left header-button">
+
+        <button (click)="black()" class="btn btn-labeled btn-primary">
+                      <span class="btn-label"><i class="fa fa-reply"></i>
+                      </span>Volver</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
+      <FONT SIZE=5>BENEFICIOS ASIGNADOS DEL DEPORTISTA</FONT>
+    </legend>
+  </div>
+  <app-dato-persona [codigo]='id'></app-dato-persona>
+  <app-menu-beneficio [codigo]='id'></app-menu-beneficio>
+</div>
