@@ -12,7 +12,7 @@
 
     <button (click)="modal.show()" class="btn btn-labeled btn-primary">
     <span class="btn-label"><i class="fa fa-plus-circle fa-lg"></i>
-    </span>Nuevo</button>
+    </span>Nuevo Beneficio</button>
 
   </div>
 
@@ -43,7 +43,7 @@
                   <tbody>
                     <tr *ngFor="let beneficio of beneficioactivo">
                       <td class="acciones">
-                        <a class="btn btn-primary btn-xs" data-toggle="modal" (click)="setBeneficioId(beneficio); modal.show()"><i class="fa fa-edit"></i> Editar Disposición</a>
+                        <a class="btn btn-primary btn-xs" data-toggle="modal" (click)="setBeneficioId(beneficio); modal.show()"><i class="fa fa-edit"></i> Editar Disposición del Beneficio</a>
                       </td>
                       <td>{{beneficio.disposicion}}</td>
                       <td>{{beneficio.fechaAsignacion}}</td>

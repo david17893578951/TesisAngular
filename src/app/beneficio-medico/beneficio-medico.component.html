@@ -35,7 +35,7 @@
                   <tr *ngFor="let persona of personas">
                     <td class="acciones">
                       <a class="btn btn-primary btn-xs" (click)="getBeneficio(persona.id); modal.show()"><i class="fa fa-eye"></i> Ver Beneficio activo</a>
-                      <a class="btn btn-primary btn-xs" routerLink="../beneficiomedico/beneficiario/{{persona.id}}"><i class="fa fa-edit"></i> Editar</a>
+                      <a class="btn btn-primary btn-xs" routerLink="../beneficiomedico/beneficiario/{{persona.id}}"><i class="fa fa-edit"></i> Editar Beneficio</a>
                     </td>
                     <td>{{persona.cedula}}</td>
                     <td>{{persona.apellido}}</td>

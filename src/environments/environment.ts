@@ -5,10 +5,11 @@
 
 export const environment = {
   production: false,
-   apiMedica: {
-    url: "https://modulo-medico-spring.herokuapp.com/",
+  apiMedica: {
+    url: "https://modulo-medico-spring.herokuapp.com",
   },
   apiSri: {
-    url: "http://localhost:8089",
+    url: "https://sri-demo-spring.herokuapp.com",
   }
+  
 };

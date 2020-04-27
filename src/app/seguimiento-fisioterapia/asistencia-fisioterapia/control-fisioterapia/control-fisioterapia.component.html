@@ -12,7 +12,7 @@
 
 
   <legend align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
-    <FONT SIZE=5>DIAGNÓSTICO FISIOTERAPEUTA </FONT>
+    <FONT SIZE=5>CONTROL FISIOTERAPEUTA </FONT>
   </legend>
   <app-dato-persona [codigo]='id'></app-dato-persona>
 
@@ -110,7 +110,7 @@
         <div class="well" *ngIf="!show1">
 
           <legend SIZE=100 align="center" style="font-family: 'Times New Roman';color:rgb(0, 92, 200)">
-            <FONT SIZE=5>Asistencias</FONT>
+            <FONT SIZE=5>Porcetajes de Asistencia a controles Fisioterapeuticos</FONT>
           </legend>
 
           <div class="well" align="center">
@@ -125,7 +125,7 @@
 
           <button *ngIf="terapiavigente.id && diagnosticovigente.id" (click)="modal.show()" class="btn btn-labeled btn-primary">
                       <span class="btn-label"><i class="fa fa-plus-circle fa-lg"></i>
-                      </span>Nuevo</button>
+                      </span>Nuevo control de Asistencia</button>
 
           <sa-datatable fbg-datatable tableClass="table table-striped table-bordered table-hover">
             <thead>
@@ -142,7 +142,7 @@
               <tr *ngFor="let seguimiento of asistencias">
                 <td class="acciones">
 
-                  <a class="btn btn-primary btn-xs" placement="top" data-toggle="modal" (click)="setSeguimientoId(seguimiento); modal.show()"><i class="fa fa-edit"></i> Editar</a>
+                  <a class="btn btn-primary btn-xs" placement="top" data-toggle="modal" (click)="setSeguimientoId(seguimiento); modal.show()"><i class="fa fa-edit"></i> Editar Control de Asistencia</a>
                 </td>
                 <td>{{seguimiento.numsesionactual}}</td>
                 <td>{{seguimiento.fecha | date:'dd/MM/yyyy'}}</td>

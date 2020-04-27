@@ -86,8 +86,7 @@
                       </label>
 
                       <div class="col-lg-8" *ngIf="!id">
-                        <input type="text" minlength="10" maxlength="10" class="form-control" [(ngModel)]="personasri.usuario" name="cedula"
-                          required>
+                        <input type="text" minlength="10" maxlength="10" class="form-control" [(ngModel)]="personasri.prsCedula" name="cedula" required>
                       </div>
                       <div class="col-lg-8" *ngIf="id">
                         <input type="text" minlength="10" maxlength="10" class="form-control" [(ngModel)]="persona.cedula" name="cedula" required>
@@ -101,10 +100,52 @@
                                             <FONT SIZE=3>Apellido<label class="text-danger">*</label>:</FONT>
                       </label>
                       <div class="col-lg-8" *ngIf="!id">
-                        <input type="text" class="form-control" [(ngModel)]="personasri.contrasena" required name="apellido">
+                        <input type="text" class="form-control" [(ngModel)]="personasri.prsApellido" required name="apellido">
                       </div>
                       <div class="col-lg-8" *ngIf="id">
                         <input type="text" class="form-control" [(ngModel)]="persona.apellido" required name="apellido1">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Nacionalidad<label class="text-danger">*</label>:</FONT>
+                      </label>
+                      <div class="col-lg-8" *ngIf="!id">
+                        <input type="text" class="form-control" [(ngModel)]="personasri.prsNacionalidad" required name="nacionalidad">
+                      </div>
+                      <div class="col-lg-8" *ngIf="id">
+                        <input type="text" class="form-control" [(ngModel)]="persona.nacionalidad" required name="nacionalidad1">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Lugar de Residencia<label class="text-danger">*</label>:</FONT>
+                      </label>
+                      <div class="col-lg-8" *ngIf="!id">
+                        <input type="text" class="form-control" [(ngModel)]="personasri.prsDirRecidencia" required name="dirRecidencia">
+                      </div>
+                      <div class="col-lg-8" *ngIf="id">
+                        <input type="text" class="form-control" [(ngModel)]="persona.dirRecidencia" required name="dirRecidencia1">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <div class="form-group">
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Correo Electrónico<label class="text-danger">*</label>:</FONT>
+                      </label>
+                      <div class="col-lg-8" *ngIf="!id">
+                        <input type="text" class="form-control" [(ngModel)]="personasri.prsCorreo" required name="correo">
+                      </div>
+                      <div class="col-lg-8" *ngIf="id">
+                        <input type="text" class="form-control" [(ngModel)]="persona.correo" required name="correo1">
                       </div>
                     </div>
                   </fieldset>
@@ -114,7 +155,17 @@
                                             <FONT SIZE=3>Etnia<label class="text-danger">*</label>:</FONT>
                       </label>
 
-                      <div class="col-lg-8">
+                      <div class="col-lg-8" *ngIf="!id">
+                        <select class="input-sm" [(ngModel)]="personasri.prsEtnia" required name="etnia">
+                        <option>MESTIZO</option>
+                         <option>MONTUBIO</option>
+                         <option>AFROECUATORIANO</option>
+                          <option>INDÍGENA</option>
+                           <option>BLANCO</option>
+                      </select>
+                      </div>
+
+                      <div class="col-lg-8" *ngIf="id">
                         <select class="input-sm" [(ngModel)]="persona.etnia" required name="etnia">
                         <option>MESTIZO</option>
                          <option>MONTUBIO</option>
@@ -122,8 +173,8 @@
                           <option>INDÍGENA</option>
                            <option>BLANCO</option>
                       </select>
-
                       </div>
+
                     </div>
                   </fieldset>
                 </div>
@@ -136,7 +187,7 @@
                                             <FONT SIZE=3>Nombre<label class="text-danger">*</label>:</FONT>
                       </label>
                       <div class="col-lg-8" *ngIf="!id">
-                        <input type="text" class="form-control" [(ngModel)]="personasri.nombre" required name="nombre">
+                        <input type="text" class="form-control" [(ngModel)]="personasri.prsNombre" required name="nombre">
                       </div>
                       <div class="col-lg-8" *ngIf="id">
                         <input type="text" class="form-control" [(ngModel)]="persona.nombre" required name="nombre1">
@@ -149,13 +200,20 @@
                                             <FONT SIZE=3>Sexo<label class="text-danger">*</label>:</FONT>
                       </label>
 
-                      <div class="col-lg-8">
+                      <div class="col-lg-8" *ngIf="!id">
+                        <select class="input-sm" [(ngModel)]="personasri.prsSexo" required name="sexo">
+                        <option value="F">MASCULINO</option>
+                        <option value="M">FEMENINO</option>
+                      </select>
+                      </div>
+
+                      <div class="col-lg-8" *ngIf="id">
                         <select class="input-sm" [(ngModel)]="persona.sexo" required name="sexo">
                         <option value="F">MASCULINO</option>
                         <option value="M">FEMENINO</option>
                       </select>
-
                       </div>
+
                     </div>
                   </fieldset>
                   <fieldset>
@@ -164,7 +222,17 @@
                                             <FONT SIZE=3>Estado Civil<label class="text-danger">*</label>:</FONT>
                       </label>
 
-                      <div class="col-lg-8">
+                      <div class="col-lg-8" *ngIf="!id">
+                        <select class="input-sm" [(ngModel)]="personasri.prsEstadoCivil" required name="estadoCivil1">
+                          <option value="S">SOLTERO/A</option>
+                          <option value="C">CASADO/A</option>
+                          <option value="D">DIVORCIADO/A</option>
+                          <option value="V">VIUDO/A</option>
+                          <option value="U">UNIÓN LIBRE</option>
+                      </select>
+                      </div>
+
+                      <div class="col-lg-8" *ngIf="id">
                         <select class="input-sm" [(ngModel)]="persona.estadoCivil" required name="estadoCivil">
                           <option value="S">SOLTERO/A</option>
                           <option value="C">CASADO/A</option>
@@ -172,7 +240,49 @@
                           <option value="V">VIUDO/A</option>
                           <option value="U">UNIÓN LIBRE</option>
                       </select>
+                      </div>
 
+                    </div>
+                  </fieldset>
+                   <fieldset>
+                    <div class="form-group">
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Grupo Sanguineo<label class="text-danger">*</label>:</FONT>
+                      </label>
+                      <div class="col-lg-8" *ngIf="!id">
+                        <input type="text" class="form-control" [(ngModel)]="personasri.prsGrupoSanguineo" required name="grupoSanguineo">
+                      </div>
+                      <div class="col-lg-8" *ngIf="id">
+                        <input type="text" class="form-control" [(ngModel)]="persona.grupoSanguineo" required name="grupoSanguineo1">
+                      </div>
+                    </div>
+                  </fieldset>
+                   <fieldset>
+                    <div class="form-group">
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Ocupación<label class="text-danger">*</label>:</FONT>
+                      </label>
+                      <div class="col-lg-8" *ngIf="!id">
+                        <input type="text" class="form-control" [(ngModel)]="personasri.prsOcupacion" required name="ocupacion">
+                      </div>
+                      <div class="col-lg-8" *ngIf="id">
+                        <input type="text" class="form-control" [(ngModel)]="persona.ocupacion" required name="ocupacion1">
+                      </div>
+                    </div>
+                  </fieldset>
+                   <fieldset>
+                    <div class="form-group">
+
+                      <label class="col-lg-4 control-label text-left" for="cedula" style="color: rgb(126, 123, 123) ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                            <FONT SIZE=3>Teléfono<label class="text-danger">*</label>:</FONT>
+                      </label>
+                      <div class="col-lg-8" *ngIf="!id">
+                        <input type="text" class="form-control" [(ngModel)]="personasri.prsTelefono" required name="telefono">
+                      </div>
+                      <div class="col-lg-8" *ngIf="id">
+                        <input type="text" class="form-control" [(ngModel)]="persona.telefono" required name="telefono1">
                       </div>
                     </div>
                   </fieldset>

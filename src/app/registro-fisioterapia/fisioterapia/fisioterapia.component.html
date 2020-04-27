@@ -44,7 +44,7 @@
                 <div class="well">
                   <button (click)="modal.show()" class="btn btn-labeled btn-primary">
     <span class="btn-label"><i class="fa fa-plus-circle fa-lg"></i>
-    </span>Nuevo</button>
+    </span>Nueva Sugerencia Médica</button>
                 </div>
                 <sa-datatable fbg-datatable tableClass="table table-striped table-bordered table-hover">
                   <thead>
@@ -140,7 +140,7 @@
                       </label>
 
                       <div class="col-lg-8">
-                        <input type="number" step="any" min="1" class="form-control" [(ngModel)]="seguimiento.numsesionSug" required name="numsesionSug">
+                        <input type="number" step="any" min="1" max="10" class="form-control" [(ngModel)]="seguimiento.numsesionSug" required name="numsesionSug">
                       </div>
                     </div>
                   </fieldset>

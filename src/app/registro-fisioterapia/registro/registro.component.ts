@@ -80,17 +80,27 @@ export class RegistroComponent implements OnInit {
   public addOrUpdate(valid) {
     if (!valid) return;
     if (this.id != null) {
-    console.log(this.persona);
-    
+      console.log(this.persona);
+
       this.httpPersona.editPersona(this.persona).subscribe(personal => {
         this.alertaService.mostrarAlertaInfoGeneric();
         this.router.navigate(['registrofisioterapia/fisioterapia/' + this.id])
       });
     } else {
-      console.log(this.personasri.usuario);
-      this.persona.cedula = this.personasri.usuario;
-      this.persona.nombre = this.personasri.nombre;
-      this.persona.apellido = this.personasri.contrasena;
+      console.log(this.personasri.prsCedula);
+      console.log(this.personasri);
+      this.persona.cedula = this.personasri.prsCedula;
+      this.persona.nombre = this.personasri.prsNombre;
+      this.persona.apellido = this.personasri.prsApellido;
+      this.persona.sexo = this.personasri.prsSexo;
+      this.persona.estadoCivil = this.personasri.prsEstadoCivil;
+      this.persona.etnia = this.personasri.prsEtnia;
+      this.persona.nacionalidad = this.personasri.prsNacionalidad;
+      this.persona.dirRecidencia = this.personasri.prsDirRecidencia;
+      this.persona.correo = this.personasri.prsCorreo;
+      this.persona.grupoSanguineo = this.personasri.prsGrupoSanguineo;
+      this.persona.ocupacion = this.personasri.prsOcupacion;
+      this.persona.telefono = this.personasri.prsTelefono;
       this.httpPersona.insertPersona(this.persona).subscribe(personal => {
         this.persona = personal
         this.alertaService.mostrarAlertaInfoGeneric();
@@ -107,7 +117,7 @@ export class RegistroComponent implements OnInit {
     this.router.navigate(['registrofisioterapia/fisioterapia/' + this.id])
   }
 
-public getValidators() {
+  public getValidators() {
     return {
       feedbackIcons: {
         valid: 'glyphicon glyphicon-ok',
